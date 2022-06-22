@@ -77,11 +77,14 @@ function App() {
     <div className="pokemon-info-app">
       <PokemonForm pokemonName={pokemonName} onSubmit={handleSubmit} />
       <hr />
-      <PokemonErrorBoundary resetKeys={[pokemonName]}>
-        <div className="pokemon-info">
+      <div className="pokemon-info">
+        <PokemonErrorBoundary
+          resetKeys={[pokemonName]}
+          onReset={() => setPokemonName('')}
+        >
           <PokemonInfo pokemonName={pokemonName} />
-        </div>
-      </PokemonErrorBoundary>
+        </PokemonErrorBoundary>
+      </div>
     </div>
   )
 }
