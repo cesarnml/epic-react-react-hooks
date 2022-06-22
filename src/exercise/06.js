@@ -19,7 +19,7 @@ function PokemonInfo({pokemonName}) {
   const [state, setState] = React.useState({
     pokemon: null,
     error: null,
-    status: 'idle',
+    status: pokemonName ? 'pending' : 'idle',
   })
   // const [error, setError] = React.useState(null)
   // const [status, setStatus] = React.useState('idle')
