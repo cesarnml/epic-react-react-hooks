@@ -23,6 +23,12 @@
 
 ### Lesson 04 - useState: tic tac toe
 
+- Skipped Class Refactor. Do it later as an `Extra` Trello story.
+
 ### Lesson 05 - useRef and useState: DOM interaction
 
+- I didn't learn anything new here
+
 ### Lesson 06 - useEffect: HTTP Requests
+
+-
