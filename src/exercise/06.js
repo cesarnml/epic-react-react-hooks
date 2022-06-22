@@ -11,11 +11,13 @@ import {
   fetchPokemon,
   PokemonInfoFallback,
   PokemonDataView,
+  PokemonErrorBoundary,
 } from '../pokemon'
 
 function PokemonInfo({pokemonName}) {
   // 🐨 Have state for the pokemon (null)
 
+  const [error, setError] = React.useState(null)
   const [pokemon, setPokemon] = React.useState(null)
   // 🐨 use React.useEffect where the callback should be called whenever the
   // pokemon name changes.
@@ -23,7 +25,8 @@ function PokemonInfo({pokemonName}) {
   React.useEffect(() => {
     if (!pokemonName) return
     setPokemon(null)
-    fetchPokemon(pokemonName).then(setPokemon)
+    setError(null)
+    fetchPokemon(pokemonName).then(setPokemon).catch(setError)
   }, [pokemonName])
 
   // 💰 DON'T FORGET THE DEPENDENCIES ARRAY!
@@ -43,8 +46,16 @@ function PokemonInfo({pokemonName}) {
   return (
     <div>
       {!pokemonName && <div>Submit a pokemon</div>}
-      {pokemonName && !pokemon && <PokemonInfoFallback name={pokemonName} />}
+      {pokemonName && !error && !pokemon && (
+        <PokemonInfoFallback name={pokemonName} />
+      )}
       {pokemon && <PokemonDataView pokemon={pokemon} />}
+      {error && (
+        <div role="alert">
+          There was an error:{' '}
+          <pre style={{whiteSpace: 'normal'}}>{error.message}</pre>
+        </div>
+      )}
     </div>
   )
 }
