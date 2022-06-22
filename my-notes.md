@@ -32,3 +32,4 @@
 ### Lesson 06 - useEffect: HTTP Requests
 
 - If you give a second argument to `.then` it will handle the error for that promise only (i.e. it will not handle the error for the entire promise chain) - useful if you want to only handle the http errors for a specific request
+- You can change the `key` prop of a component to cause it to unmount and remount itself.
